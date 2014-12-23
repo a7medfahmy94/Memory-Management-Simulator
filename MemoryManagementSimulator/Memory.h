@@ -84,12 +84,12 @@ public:
 				Partition u = empty.join(partitions[i]);
 				int l = partitions[i].getLength();
 				partitions.erase(partitions.begin()+i);
-				Partition v = u.allocate(l);
-				partitions.insert(partitions.begin()+i,v);
+				empty = u.allocate(l);
 				partitions.insert(partitions.begin()+i,u);
-				i--;
-				empty = Partition();
 			}
+		}
+		if(empty.getStart() != -1){
+			partitions.pb(empty);
 		}
 	}
 
@@ -98,7 +98,9 @@ public:
 			cout << "Partition " << i << ":\n";
 			cout << "at: " << partitions[i].getStart();
 			cout << ", length:" << partitions[i].getLength();
-			cout << "\n===\n";
+			cout << ", status:"
+			     << (partitions[i].getStatus()?"Occupied":"Free")
+					<< "\n===\n";
 		}
 	}
 private:

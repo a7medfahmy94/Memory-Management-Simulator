@@ -18,7 +18,7 @@ public:
 	}
 
 	Partition():
-		start(-1),length(-1),status(0){
+		start(-1),length(0),status(0){
 	}
 
 	int getStart(){return this->start;}
@@ -38,7 +38,7 @@ public:
 
 	Partition allocate(int l){
 		if(length - l >= 0){
-			int len = length;
+			int len = length-l;
 			this->status = true;
 			this->length = l;
 			return Partition(start+l,len,false);;
